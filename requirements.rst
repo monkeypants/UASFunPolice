@@ -1,0 +1,61 @@
+Requirements
+============
+
+This is deliberately rudimentary, and expected to grow...
+
+
+Submits a report to the Safety Team
+-----------------------------------
+
+Typically this would be done by a UAS operator, but the safety team would accept reports from anyone.
+
+
+Report a Hazard
+^^^^^^^^^^^^^^^
+
+A hazard is the potential for an incident or accident. The risk is percieved, the hazard report is a potential opportunity to improve safety.
+
+At the submitter's discression, Hazard reports may be treated in-confidence or without confidentiality assurances from the safety team. If confidentiality is requested, the safety team will disclose "lessons learned" and other non-specific details, but keep the specifics of the hazard report private.
+
+
+Report an Incedent
+^^^^^^^^^^^^^^^^^^
+
+An incident is something that happened, at a time and place. Nobody was hurt, nothing was significantly damaged, but a percieved risk was validated by events.
+
+The safety team will investigate every reported incident, using the same sorts of analysis as for more serious accidents. The investigation will generally be conducted internaly (within the Safety Team), without resorting to external parties. Incident investigations may be audited post-hoc by a third party, as appropriate.
+
+Submitters may request that an incident report is kept confidential. In this case, the incident report will be shared and discussed among the safety team. It may also be shared with a third party safety auditor, but it will not be released into the public domain. The safety team may disclose "lessons learned" and other non-specific details, but keep the specifics of the incident report private. 
+
+If a submitter nominates that they do not wish for the incident report to be kept private, the safety team may release it into the public domain at their discression,
+
+
+Report an Accident
+^^^^^^^^^^^^^^^^^^
+
+An accident is an incident with bad consequences. For example, personal injury significant damage to equipment.
+
+The safety team will investigate all reported accidents. As appropriate, they will also forward the accident report to all relevant parties and authorities. It may not be possible to agree to keep accident reports confidential, however the safety team can promise to be discrete if requested (as oposed to discussing the accident openly, rather than only with the relevant authorities and approtpriate third parties)
+
+
+Suppliment HIA reports with additional data
+-------------------------------------------
+
+Hazards, Incidents and Accidents are reported using a standard form, becuase it prompts the submitter to provide certain details that are considered useful a-priori. Where available, it may be beneficial to include additional data to augment the information in the standard form. For example telemetry logs, video and still images, audio, diagrams, journalism references, additional witness statements, etc. Unlike the fields of the standard form, these are essentially unstructured data.
+
+
+Directly attach media files to an HIA report
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+At the time a HIA report is submitted, the submitter may attach media files directly. For example, attach them to an email that they send to an HIA report submission inbox, or use upload features of the online HIA reporting tool. Where practical to do so, this would usually be the preferred method.
+
+Link media to an HIA report
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+At the time a HIA report is submitted, the submitter may include hyperlink references to media hosted elseware, such as youtube videos or droneshare telemetry. Where this media is password protected, the sumitter would include appropriate credentials for reference. In some situations this might be the most practical way to provide supplimentary data, for example where a significantly large volume of data were involved, or where the origional source material is not available to the submitter. However, the downside of hyperlinks to remotely hosted data is that it may cease to be available at some point in the future, making future reviews or audits more difficult.
+
+Provide supplimentary data after submission
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Either at the request of the safety team or unprompted, a HIA report submitter may chose to augment a HIA report with supplimentary data after the report has been submitted. This may be linked media or directly attached files.
+

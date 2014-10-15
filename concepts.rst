@@ -22,8 +22,8 @@ TODO, elaborate:
    * Involved: Person --< Involved >-- Involvement
 
 
-Team
-----
+Safety Team
+-----------
 
 UAS Operation, the group with the SMS:
  * HIA >-- Team
@@ -36,8 +36,9 @@ Note on Teams:
  * system may be configured as multi-tenanted solution (software as a service, multiple teams)
  * system may be configured for a single team, "self-hosted" configuration
  
-Privacy
--------
+
+Confidentiality
+---------------
 
 Private: only visible to the Team's Chief Pilot and Safety Officer(s). Note local laws may require the Chief Pilot to report all data on certain accidents to authorities.
 

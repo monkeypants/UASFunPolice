@@ -8,7 +8,9 @@ Contents:
    :maxdepth: 2
 
    introduction
-   design_concepts
+   concepts
+   requirements
+   solutions
 
 
 Indices and tables
