@@ -1,11 +1,12 @@
 Requirements
 ============
 
-This is deliberately rudimentary, and expected to grow...
+If we succeed in creating an airline-grade safety management system, we will have a rich and sophistocated model of our requirements. For now we have a very basic set. This is just the beginning...
 
 
-Submits a report to the Safety Team
------------------------------------
+
+Submit a report to the Safety Team
+----------------------------------
 
 Typically this would be done by a UAS operator, but the safety team would accept reports from anyone.
 
@@ -13,19 +14,19 @@ Typically this would be done by a UAS operator, but the safety team would accept
 Report a Hazard
 ^^^^^^^^^^^^^^^
 
-A hazard is the potential for an incident or accident. The risk is percieved, the hazard report is a potential opportunity to improve safety.
+A hazard is the potential for an incident or accident. The risk is percieved, the hazard report is simply an issue or problem for the safety team to evaluate, with some potential to improve safety.
 
-At the submitter's discression, Hazard reports may be treated in-confidence or without confidentiality assurances from the safety team. If confidentiality is requested, the safety team will disclose "lessons learned" and other non-specific details, but keep the specifics of the hazard report private.
+The submitter may request that the Hazard report is treated in-confidence. In this situation, the safety team may disclose "lessons learned" and other topics related to the hazard, but keep the specifics of the hazard report private (for example, who reported it and exactly when).
 
 
-Report an Incedent
+Report an Incident
 ^^^^^^^^^^^^^^^^^^
 
-An incident is something that happened, at a time and place. Nobody was hurt, nothing was significantly damaged, but a percieved risk was validated by events.
+An incident is something that actually happened (at a time and place). Nobody was hurt, nothing was significantly damaged, but a percieved risk was validated by events.
 
-The safety team will investigate every reported incident, using the same sorts of analysis as for more serious accidents. The investigation will generally be conducted internaly (within the Safety Team), without resorting to external parties. Incident investigations may be audited post-hoc by a third party, as appropriate.
+The safety team will investigate every reported incident, using the same sort of analysis as used for more serious accidents. The investigation will generally be conducted internaly (within the Safety Team), without resorting to external parties. Where appropriate, incident investigations may be reviewed by a third party, for example by an aviation safety auditor.
 
-Submitters may request that an incident report is kept confidential. In this case, the incident report will be shared and discussed among the safety team. It may also be shared with a third party safety auditor, but it will not be released into the public domain. The safety team may disclose "lessons learned" and other non-specific details, but keep the specifics of the incident report private. 
+Submitters may request that an incident report is kept confidential. In this case, the details of the incident report will be discussed among the safety team. It may also be shared with appropriate third parties, but it will not be released into the public domain. The safety team may disclose "lessons learned" and other non-specific details, but keep the specifics of the incident report private. 
 
 If a submitter nominates that they do not wish for the incident report to be kept private, the safety team may release it into the public domain at their discression,
 
@@ -35,7 +36,7 @@ Report an Accident
 
 An accident is an incident with bad consequences. For example, personal injury significant damage to equipment.
 
-The safety team will investigate all reported accidents. As appropriate, they will also forward the accident report to all relevant parties and authorities. It may not be possible to agree to keep accident reports confidential, however the safety team can promise to be discrete if requested (as oposed to discussing the accident openly, rather than only with the relevant authorities and approtpriate third parties)
+The safety team will investigate all reported accidents. As appropriate, they will also forward the accident report to relevant parties and authorities. It may not be possible to agree to keep accident reports confidential, however if requested the safety team can assure maximum possible discretion (as oposed to discussing the accident openly).
 
 
 Suppliment HIA reports with additional data
@@ -49,10 +50,14 @@ Directly attach media files to an HIA report
 
 At the time a HIA report is submitted, the submitter may attach media files directly. For example, attach them to an email that they send to an HIA report submission inbox, or use upload features of the online HIA reporting tool. Where practical to do so, this would usually be the preferred method.
 
+
 Link media to an HIA report
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-At the time a HIA report is submitted, the submitter may include hyperlink references to media hosted elseware, such as youtube videos or droneshare telemetry. Where this media is password protected, the sumitter would include appropriate credentials for reference. In some situations this might be the most practical way to provide supplimentary data, for example where a significantly large volume of data were involved, or where the origional source material is not available to the submitter. However, the downside of hyperlinks to remotely hosted data is that it may cease to be available at some point in the future, making future reviews or audits more difficult.
+At the time a HIA report is submitted, the submitter may include hyperlink references to media hosted elseware, such as youtube videos or droneshare telemetry. Where this media is password protected, the sumitter would need to provide access credentials.
+
+In some situations this might be the most practical way to provide supplimentary data, for example where a significantly large volume of data were involved, or where the origional source material is not available to the submitter. However, the downside of hyperlinks to remotely hosted data is that it may cease to be available at some point in the future, making future reviews or audits more difficult.
+
 
 Provide supplimentary data after submission
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

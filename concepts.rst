@@ -1,6 +1,9 @@
 Design Concepts
 ===============
 
+These are rude notes, probably best to skip this chapter for now.
+
+
 HIA (Hazard, Incident, Accident)
 --------------------------------
 
