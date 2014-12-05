@@ -1,9 +1,105 @@
 Requirements
 ============
 
-If we succeed in creating an airline-grade safety management system, we will have a rich and sophistocated model of our requirements. For now we have a very basic set. This is just the beginning...
+I will attempt to capture important quality requirements with prose, interspersed throughout the documentation. 
+
+At a high level, the functional requirements will be described as a number of packages that group related use-cases together (use-case packages). Detailed individual use-cases will eventually be described, including who participates in them and how.
+
+Note that in the testing documentation, individual use-cases will be validated with one or more scenarios. Some scenarios will attempt to reflect the significant messyness of real life, while other's will be deliberately simplified for the sake of clarity. These scenarios will "explain by demonstration" what the use-case is about, and also serve to drive (automated) functional tests.
+
+The use-case packages grouped into operational, management and administrative categories.
+
+Operational:
+ * plan activity
+ * record activity
+ * anonymously report concerns
+
+Management:
+ * assess safety
+ * improve safety
+ * promote safety
+
+Administrative:
+ * manage system configuration
+ * manage equipment
+ * manage people
+
+Throughout this document, the <<UCP>> steryotype will be used to denote that something is a Use Case Package (optionally, as <<UCP:FOO>> where FOO is the use case package grouping).
+
+<<UCP:Operational>> Plan Activity
+---------------------------------
+All recorded activity occurs agains some kind of plan.
+
+There is probably a standard set of generic procedures, and activities that comply with those procedures might not require aditional planning. They are performed at the operators discression and the activity is recorded after the fact. Changes to these procedures would be subject to safety assessment.
+
+There are probably types of extraordinary activity that are not covered by the standard procedures. These require advanced planning, which is subject to safety assessment prior to activity occuring. New standard procedures are would be subject to equivalent process as extraordinary activities.
+
+The activity planning domain probably inclueds concepts like:
+ * range safety plan
+ * class of airspace
+ * class of activity
+
+The scope of the risk assessment associated with activity planning is greater than safety; it also includes risks related to regulatory compliance, financial, reputation and others. We probably need to link up to a "risk management plan" framework of which safety management is a subset.
 
 
+<<UCP:Operational>> Record Activity
+-----------------------------------
+The simplest case must be very, very simple. For example, upload machine flight log files along with the absolute minimum of information. as much information as possible should be parsed from the logs automatically, minimising human intervention. This could probably be done via UI and/or API for truely hands-free operation.
+
+The complicated cases include all the incident, accident and hazard reporting features.
+
+This will not be limited to flight operation activities. Inspection and maintenance of equipment. Maybe even our meeting minutes belong here. Much to elaborate on...
+
+<<UCP:Operational>> Anonymously Report Concerns
+-----------------------------------------------
+At the very least, these will be reviewed and considered by the safety management team.
+
+
+<<UCP:Management>> Assess Safety
+--------------------------------
+Opreational data (including planned activity) is systematically reviewed, evaluated, discussed and analysed in a timely fashion. The results of this work is fed into safety improving and promoting activities.
+
+
+<<UCP:Management>> Improve Safety
+---------------------------------
+This is where we figure out what needs to be done and do it. It's a continuous improvement, closed-loop feedback process.
+
+It probably involves improving policies and procedures, initiating cultural change as well as other safety-improving actions.
+
+One idea is to utilise a ticketing system (such as GitLab) for safety issues, which are referenced (or even closed) by changes to policy and procedure documentation in a version control system (such as git).
+
+
+<<UCP:Management>> Promote Safety
+---------------------------------
+
+Follow up on incidents, accidents and hazards by creating agenda items for group meetings (e.g. the Monday Mumble session)
+
+Publish, distribute and promote relevant artefacts.
+
+Other stuff too - please elaborate!
+
+
+<<UCP:Administrative>>Manage System Configuration
+-------------------------------------------------
+Basically, modifying the behavior of the software by changing settings.
+
+There will certainly be global settings of one kind or another, i.e. settings that apply to the whole system. There may be settings that apply to an individual person or to a group.
+
+This is a supporting use-case package, it does not directly improve safety.
+
+
+<<UCP:Administrative>>Manage Equipment
+--------------------------------------
+This is a placeholder, in anticipation that we will need to manage some information about the equipment we use. A supporting use-case package.
+
+
+<<UCP:Administrative>>Manage People
+-----------------------------------
+this might be "people and groups" if we end up with some sort of multi-tennanted solution (i.e. the "groups" would be the tennants). Maybe one person could be a member of multiple groups... A supporting use-case package.
+
+
+------------------------------------------------------------------
+The following documentation is from the first draft of this page, and needs to be integrated with the above use-case framework.
 
 Submit a report to the Safety Team
 ----------------------------------
