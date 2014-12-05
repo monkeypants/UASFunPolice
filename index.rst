@@ -1,6 +1,6 @@
 
-SMTUAS Documentation
-====================
+UASFunPolice Documentation
+==========================
 
 .. toctree::
    :maxdepth: 2

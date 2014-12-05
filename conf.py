@@ -8,25 +8,25 @@ extensions = [
 templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
-project = u'Safety Management Tools for Unmanned Aerial Systems (SMTUAS)'
+project = u'UASFunPolice'
 copyright = u'2014, Chris Gough'
 version = '0.0'
 release = '0.0'
 exclude_patterns = ['_build']
 html_theme = 'traditional'
 html_static_path = ['_static']
-htmlhelp_basename = 'SMTUASdoc'
+htmlhelp_basename = 'UASFunPolice'
 latex_elements = {
     'papersize': 'a4paper',
 }
 latex_documents = [
-  ('index', 'SMTUASS.tex',
-   u'Safety Management Tools for Unmaned Aerial Systems',
+  ('index', 'UASFunPolice.tex',
+   u'UASFunPolice',
    u'Chris Gough', 'manual'),
 ]
 texinfo_documents = [
-  ('index', 'SMTUAS',
-    u'SMTUAS Documentation', u'Chris Gough', 'SMTUAS',
+  ('index', 'UASFunPolice',
+    u'UASFunPolice Documentation', u'Chris Gough', 'UASFunPolice',
     'Safety Management Tools for Unmaned Aerial Systems',
     'Miscellaneous'),
 ]
