@@ -1,5 +1,5 @@
-Technical Solutions
-===================
+Design Solution
+===============
 
 Minimum Viable Product
 ---------------------- 

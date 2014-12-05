@@ -8,7 +8,7 @@ UASFunPolice Documentation
    introduction
    business_analysis
    requirements
-   solutions
+   design
 
 
 Indices and tables
