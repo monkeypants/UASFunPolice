@@ -6,7 +6,7 @@ UASFunPolice Documentation
    :maxdepth: 2
 
    introduction
-   concepts
+   business_analysis
    requirements
    solutions
 
