@@ -1,0 +1,141 @@
+.. _analysis:
+
+Outstanding Analysis
+====================
+
+This chapter is basically an audit of the Domain Specific Language (DSL) used to describe the functional requirements/feature of the system. The language is analysed from of Actor and Use Case perspectives, as well as from the "bottom up" (language perspective).
+
+Actors
+------
+
+{% if ac.fetch_all()|length == 0 %}
+**No Actors have been defined**
+{% elif ac.fetch_all()|length == 1 %}
+1 Actor has been defined
+{% else %}
+{{ ac.fetch_all()|length }} Actors have been defined.
+{% endif %}
+
+{% if ac.fetch_badly_described()|length > 1 %}
+{{ ac.fetch_badly_described()|length }} have inadequate descriptions:
+{% for actor in ac.fetch_badly_described() %}
+ * :ref:`{{ actor }}`{% endfor %}
+{% elif ac.fetch_badly_described()|length == 1 %}
+:ref:`{{ ac.fetch_badly_described()[0] }}` has an inadequate description.
+{% else %}
+All seem to have adequate descriptions.
+{% endif %}
+
+{% if ac.fetch_unbound()|length > 1 %}
+{{ ac.fetch_unbound()|length }} are not associated with any requirements:
+{% for actor in ac.fetch_unbound() %}
+ * :ref:`{{ actor }}`{% endfor %}
+{% elif ac.fetch_unbound()|length == 1 %}
+:ref:`{{ ac.fetch_unbound()[0] }}` is not associated with any requirement.
+{% else %}
+All are associated with requirements.
+{% endif %}
+
+{% for actor in ac.fetch_all() %}{% if actor.undefined_scenarios()|length > 0 %}
+
+{{ actor }}
+{{ '^' * actor|length }}
+
+{% if actor.undefined_scenarios()|length == 1 %}
+{{ actor }} has an undefined scenario, :ref:`{{ actor.undefined_scenarios()[0] }}`.
+{% else %}
+{{ actor }} has {{ actor.undefined_scenarios()|length }} undefined scenarios:
+{% for scenario in actor.undefined_scenarios() %}
+ * :ref:`{{ scenario }}`{% endfor %}
+{% endif %}
+
+{% endif %}{% endfor %}
+
+Use Case Model
+--------------
+
+There are {{ ucpc.fetch_all()|length }} use-case packages.
+
+{% if ucpc.fetch_empty_packages()|length == 0 %}
+All of them contain use-cases.
+{% elif ucpc.fetch_empty_packages()|length == 1 %}
+**Analysis required**: It has no use-cases.
+{% else %}
+**Analysis required**: {{ ucpc.fetch_empty_packages()|length }} of them have no use-cases:
+{% for pkg in ucpc.fetch_empty_packages() %}
+ * {{ pkg }}{% endfor %}
+{% endif %}
+
+There are {{ ucc.fetch_all()|length }} use-cases in total.
+
+{% if ucc.featureless_ucs()|length == 0 %}
+Features have been specified for all of them.
+{% elif ucc.featureless_ucs()|length == 1 %}
+**Analysis required**: {{ ucc.featureless_ucs()[0] }} is featureless.
+{% else %}
+**Analysis required**: {{ ucc.featureless_ucs()|length }} are featureless:
+{% for uc in ucc.featureless_ucs() %}
+ * :ref:`{{ uc }}`{% endfor %}
+{% endif %}
+
+
+{% for uc in ucc.fetch_all() %}{% if uc.undefined_scenarios()|length > 0 %}
+
+{{ uc }}
+{{ "^" * uc|length }}
+
+There are {{ uc.undefined_scenarios()|length }} ill-defined scenarios.
+
+{% if uc.undefined_positive_scenarios()|length > 0 %}
+**Undefined positive scenarios**:
+{% for scenario in uc.undefined_positive_scenarios() %}
+ * :ref:`{{ scenario }}`{% endfor %}
+{% else %}
+There are no undefined positive (allowed) scenarios for :ref:`{{ uc }}`.
+{% endif %}
+
+{% if uc.undefined_negative_scenarios()|length > 0 %}
+**Undefined negative scenarios**:
+{% for scenario in uc.undefined_negative_scenarios() %}
+ * :ref:`{{ scenario }}`{% endfor %}
+{% else %}
+There are no undefined negative (dissallowed) scenarios for :ref:`{{ uc }}`.
+{% endif %}
+{% endif %}{% endfor %}
+
+Business Terms
+--------------
+
+{{ vc.fetch_all()|length }} verbs and {{ nc.fetch_all()|length }} nouns have been defined.
+
+{% if vc.unused()|length > 1 %}
+{{ vc.unused()|length }} verbs have been defined but are not used in any features.
+{% for verb in vc.unused() %}
+ * :ref:`{{ verb }}`{% endfor %}
+{% elif vc.unused()|length == 1 %}
+1 Verb has been defined but not used in any features; {{ vc.unused()[0] }}.
+{% else %}
+All verbs are used in features.
+{% endif %}
+
+{% if nc.unused()|length > 1 %}
+{{ nc.unused()|length }} nouns have been defined but are not used in any features.
+{% for noun in nc.unused() %}
+ * :ref:`{{ noun }}`{% endfor %}
+{% elif nc.unused()|length == 1 %}
+1 Noun has been defined but not used in any features; {{ nc.unused()[0] }}.
+{% else %}
+All nouns are used in features.
+{% endif %}
+
+inatequately defined phrases?
+
+
+conditionally per feature
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+without scenarios?
+
+with undefined positive scenarios?
+
+with undefined negative scenarios?

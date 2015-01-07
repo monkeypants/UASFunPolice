@@ -1,0 +1,60 @@
+.. _testing:
+
+Testing / Acceptance Criteria
+=============================
+
+Functional requirements are documented as scenarios. For convenience
+during testing, these are organised by Actor, then Use Case.
+
+
+{% for actor in ac.fetch_all() %}{% for uc in actor.use_cases() %}
+{{ actor }} - {{ uc }}
+{{ '-' * actor|length }}---{{ '-' * uc|length }}
+
+{{ actor }} has COUNT-ME allowable and COUNT_ME dissallowed scenarios for {{ uc }}.
+
+{% for feature in uc.features() %}{% for scenario in feature.scenarios(actor) %}
+
+.. _{{ scenario }}:
+
+{% if scenario.allowed %}Scenario{% else %}DISSALLOWED{% endif %}: {{ scenario }}
+{% if scenario.allowed %}^^^^^^^^{% else %}^^^^^^^^^^^{% endif %}^^{{ '^' * scenario|length }}
+
+Actor: :ref:`{{ scenario.actor }}`
+
+Acceptance criteria for :ref:`{{ scenario.feature }}`
+
+{% if scenario.fixtures|length > 0 %}
+Preconditions: {{ scenario.fixtures }}
+{% endif %}
+
+{% if scenario.happy_story|length > 0 and scenario.allowed %}
+Steps:
+{% for sentence in scenario.happy_story %}
+ * {{ sentence }}{% endfor %}
+{% elif scenario.sad_story|length > 0 and not scenario.allowed %}
+Guard/checks:
+{% for sentence in scenario.sad_story %}
+ * {{ sentence }}{% endfor %}
+{% else %}
+
+**NOT YET MODELLED: ANALYSIS REQUIRED**
+
+Feature Code:
+ * Action: *{{ scenario.feature.specification.action }}*
+ * Object: *{{ scenario.feature.specification.obj }}*
+ * Result: *{{ scenario.feature.specification.result }}*
+
+Debug:
+ * Actor: *{{ scenario.actor }}*
+
+Debug (sad):{% for sentence in scenario.sad_story %}
+ * *{{ sentence }}*{% endfor %}
+
+Debug (happy):{% for sentence in scenario.happy_story %}
+ * *{{ sentence }}*{% endfor %}
+
+
+{% endif %}
+
+{% endfor %}{% endfor %}{% endfor %}{% endfor %}

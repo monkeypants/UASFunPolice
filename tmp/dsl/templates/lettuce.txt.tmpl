@@ -1,0 +1,11 @@
+Feature: {{ feature }}
+
+{% for scenario in feature.scenarios() %}
+    Scenario: {{ scenario }}
+    	Given I am a {{ scenario.actor }}{% if scenario.allowable %}{% for sentence in scenario.happy_story %}
+        {{ sentence }}{% endfor %}
+	    {% else %}{% for sentence in scenario.sad_story %}
+	{{ sentence }}{% endfor %}
+    {% endif %}
+{% endfor %}
+

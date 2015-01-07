@@ -1,0 +1,135 @@
+Actors
+======
+
+For the purpose of this dicument, an **actor** is defined
+as a type of person that interacts with the system. It's related to the concept
+of *roles*, but while one person may have multiple roles, they can only ever be
+a single type of actor. The distinction may not be quite so clean cut in general
+use, but this is how the term *actor* is used in this document.
+
+Actor definitions are an element of defining how the system is
+expected to behave in different situations (including system security / 
+access control).
+
+{% if actors|length <1 %}
+No actors have been specified. **ANALYSIS REQUIRED**.
+{% elif actors|length <2 %}
+Only one type of actor has been specified; {{ actors|first }}.
+{% else %}
+{{ actors|length }} types of actor have been specified:
+{% for actor in actors %}
+ * {{ actor }}{% endfor %}
+{% endif %}
+
+
+{% for actor in actors %}
+
+.. _{{ actor }}:
+
+{{ actor }}
+{{ '-' * actor|length }}
+
+
+{% if actor.description == actor.name %}
+**Analysis Required**: {{ actor }} inadequately described (description is the same as name).
+{% endif %}
+{% if actor.description|length or not actor.description == 0 %}
+**Analysis Required**: {{ actor }} inadequately described (no or empty description).
+{% else %}{{ actor.description }}.{% endif %}
+
+{% if actor.allowable_actions()|length < 1 %}
+An **{{ actor }}** has been defined, but they can not perform any actions yet.
+
+**MORE ANALYSIS REQUIRED**
+{% elif actor.allowable_actions()|length < 2 %}
+The **{{ actor }}** can only perform one type action; {{ actor.allowable_actions()|first }}
+{% else %}
+The **{{ actor }}** can perform {{ actor.allowable_actions()|length }} types of action.
+{% endif %}
+
+{% if actor.allowable_actions()|length > 0 %}
+.. graphviz::
+
+   digraph d {
+      rankdir="LR";
+      label="Allowable actions for {{ actor }}";
+      node [shape="ellipse"];
+
+      actor [label="{{ actor }}" shape=rectangle];
+      {% for action in actor.allowable_actions() %}
+      {{ action.code() }} [ label="{{ action }}"];
+      actor -> {{ action.code() }};
+      {% endfor %}
+   }
+{% endif %}
+
+.. List scenarios by Verb
+{% for action in actor.actions() %}
+
+.. _{{ actor }} - {{ action }}:
+
+{{ actor }} - {{ action|capitalize }}
+{{ '^' * actor|length }}^^^{{ '^' * action|length }}
+
+{% if action.distinct_allowable_unidirectional_nouns(actor)|length > 1 %}
+From {{ action.distinct_allowable_objs(actor)|length }}
+subject{% if action.distinct_allowable_objs(actor)|length >1 %}s{% endif %},
+:ref:`{{ actor }}` is allowed to :ref:`{{ action }}`
+to {{ action.distinct_allowable_results(actor)|length }} 
+predicate{% if action.distinct_allowable_results(actor)|length > 1 %}s{% endif %}. 
+{% endif %}
+{% if action.distinct_allowable_binary_nouns(actor)|length > 0 %}
+:ref:`{{ actor }}` can :ref:`{{ action }}` 
+{{ action.distinct_allowable_binary_nouns(actor)|length }}
+noun{% if action.distinct_allowable_binary_nouns(actor)|length > 1 %}s{% endif %}
+as both subject and predicate.
+{% endif %}
+
+{% if action.allowable_features(actor)|length > 0 %}
+.. graphviz::
+
+   digraph d {
+      rankdir="LR";
+      node [shape="rectangle"];
+
+      action [label="{{ action }}" shape=ellipse];
+      {% for noun in action.distinct_allowable_nouns(actor) %}
+      {{ noun.code() }} [ label="{{ noun }}"];{% endfor %}
+      {% for obj in action.distinct_allowable_objs(actor) %}{% if obj not in action.distinct_allowable_binary_nouns(actor) %}
+      {{ obj.code() }} -> action;{% endif %}{% endfor %}
+      {% for result in action.distinct_allowable_results(actor) %}{% if result not in action.distinct_allowable_binary_nouns(actor) %}
+      action -> {{ result.code() }};{% endif %}{% endfor %}
+      {% for noun in action.distinct_allowable_binary_nouns(actor) %}
+      action -> {{ noun.code() }};{% endfor %}
+   }
+{% endif %}
+
+{% if action.allowable_features(actor)|length > 0 %}
+{{ action|capitalize }} features that {{ actor }} is allowed to action:
+{% for feature in action.allowable_features(actor) %}
+ * :ref:`{{ feature }}`{% endfor %}{% endif %}
+
+{% if action.dissallowable_scenarios(actor)|length > 0 %}
+
+{{ actor }} has restrictions on {{ action }}
+in relation to {{ action.distinct_dissallowable_scenario_objs(actor)|length }}
+subject{% if action.distinct_dissallowable_scenario_objs(actor)|length > 1 %}s{% endif %}:
+{% for noun in action.distinct_dissallowable_scenario_objs(actor) %}
+ * :ref:`{{ noun }}`{% endfor %}
+
+{{ actor }} has restrictions on {{ action }}
+in relation to {{ action.distinct_dissallowable_scenario_results(actor)|length }}
+predicate{% if action.distinct_dissallowable_scenario_results(actor)|length > 1 %}s{% endif %}:
+{% for noun in action.distinct_dissallowable_scenario_results(actor) %}
+ * :ref:`{{ noun }}`{% endfor %}
+
+These are verified with the following {{ action.dissallowable_scenarios(actor)|length }}
+negative testing scenarios:
+{% for scenario in action.dissallowable_scenarios(actor) %}
+   * :ref:`{{ scenario }}`{% endfor %}{% endif %}
+
+{% endfor %}
+
+{% endfor %}
+
+

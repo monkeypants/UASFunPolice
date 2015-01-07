@@ -1,0 +1,38 @@
+
+.. _{{ feature }}:
+
+Feature: {{ feature }}
+========={{ '=' * feature|length }}
+
+.. graphviz::
+
+   digraph d {
+      rankdir = "LR";
+      node [shape="rectangle"];
+      action [label="{{ feature.specification.action }}" shape="ellipse"];
+      result [label="{{ feature.specification.result }}"];
+      object [label="{{ feature.specification.obj }}"];
+      object -> action -> result;
+   }
+
+
+Use Case: :ref:`{{  feature.use_case  }}`
+
+Action: :ref:`{{ feature.specification.action }}`
+
+Result: :ref:`{{ feature.specification.result }}`
+
+Object: :ref:`{{ feature.specification.obj }}`
+
+{% if feature.allowed_actors()|length > 0 %}
+There are {{ feature.allowed_actors()|length }}
+actor{% if feature.allowed_actors()|length != 1 %}s{% endif %}
+with access to this feature:
+{% for actor in feature.allowed_actors() %}
+ * :ref:`{{ actor }}`{% endfor %}
+{% endif %}
+
+Scenarios (business accetpance criteria):
+{% for scenario in feature.scenarios() %}
+ * :ref:`{{ scenario }}`{% endfor %}
+
