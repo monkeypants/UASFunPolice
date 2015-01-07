@@ -4,6 +4,7 @@ import os
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
+    'sphinx.ext.graphviz',
 ]
 templates_path = ['_templates']
 source_suffix = '.rst'
