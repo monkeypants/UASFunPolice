@@ -10,6 +10,7 @@ The goal of operators is to operate safely. The goal of safety teams is to conti
 .. graphviz::
 
    digraph d {
+      label="figure 1; loose coupling of operations from safety management services";
       promote [label="promote\nsafety\nculture" shape=ellipse];
       opcom [label="UAS/RPAS\noperator" shape=house];
       operate [label="operate\nUAS/RPAS\nsafely"];
@@ -24,88 +25,133 @@ The goal of operators is to operate safely. The goal of safety teams is to conti
 
 In adition to distinctly separating these roles, the design intent of the system is
 to support distrubuted safety colaboration. This means multiple safety teams and
-multiple operators, who free to be as independant or colaborative as they wish.
+multiple operators, who are free to be as independant or colaborative as they wish.
 
  * They may run their own instances of the system, or co-tenant shared IT infrastructure.
  * Operators control what data they share (if any) with the wider community, and what they share with their safety team(s).
  * Safety teams can limit their view to the operators they service, or combine it with public data from the entire operator community.
 
-There is an absolute minimum of "centralised adminisration", it's limited to a simple
-interface where operators can register/publish the fact they exist and have chosen to make some data available.
-
-Operator teams and the safety teams are loosely coupled. Each operator can share their data with multiple safety teams (or none). Each safety team can audit, analyse and monitor multiple operators, or they can limit themselves to analysing the public information from the wider comunity.
-
-The next diagram is horendous, and could be replaced with an much simpler infographic at some stage.
+This introduces a third (loose coupled) domain, colaboration management. Again, this can be done privately or publically. Public colaboration management means that the information-sharing network between operators and safety teams is transparent. Private colaboration management means that information-sharing network is hidden (except to the participants). Both are expected to be usefull under different situations. The following diagram illustrates the public case.
 
 .. graphviz::
 
    digraph d {
-      subgraph cluster_opcom {
-         label = "operations (private)"
-         sms [label="management\ndatabase" shape=component];
-	 sms_admin_ui [label="admin\nUI"];
-	 sms_ui [label="web/tablet UI"];
-	 sms_api [label="API"];
-	 sms_rdf [label="linked-data\ninterface"];
-	 
-	 sms_admin_ui -> sms;
-	 sms_ui -> sms;
-	 sms_api -> sms;
-	 sms_rdf -> sms;
-	 integrate [label="SMS-integrated\ntools"];
-	 integrate -> sms_api;
-
+      label="figure 2; public colaboration management";
+      subgraph cluster_pub {
+         label="public domain";
+         promote [label="promote\nsafety\nculture" shape=ellipse];
+         colab [label="maintain\ncolaboration"];
+	 orch [label="orchestration\ntools" shape=component];
+	 colab -> orch;
+	 promote -> orch;
       }
-      subgraph cluster_public {
-         label = "open source (public)";
-         enhance [label="enhance\nsoftware" shape=ellipse];
-         src [label="UAS Fun Police\nsource code" shape=component];
-	 pr [label="public\nregister" shape=component];
-	 pri [label="optional\npublication\ninterface"];
-	 pri -> pr -> src;
+      subgraph cluster_op {
+         label = "operator domain";
+         opcom [label="UAS/RPAS\noperator" shape=house];
+         operate [label="operate\nUAS/RPAS\nsafely"];
+	 omd [label="operations\nmanagement\ndatabase" shape=component];
+	 operate -> omd;
       }
       subgraph cluster_st {
-         label = "governance (private)";
-         aa [label="audit, analyse\nand monitor\noperations"];	 
-         ag [label="data\naggregator" shape=component];
-         gov [label="safety\ngovernance\ntools" shape=component];
+         label = "safety team domain";
+         hub [label="safety\nteam" shape=house];
+         ci [label="continuously\nimprove\nsafety" shape=ellipse];
+	 stt [label="governance\ntools" shape=component];
+	 ci -> stt;
       }
-      ag -> pri -> sms_rdf;
-      promote [label="promote\nsafety\nculture" shape=ellipse];
-      opcom [label="operator\ncommunity" shape=house];
-      operate [label="operate\nUAS/RPAS\nsafely"];
-      operate -> integrate;
-      operate -> sms_ui;
-      operate -> sms_admin_ui;
-      hub [label="safety\nteam" shape=house];
-      ci [label="continuously\nimprove\nsafety" shape=ellipse];
-      opcom -> promote;
+
       opcom -> operate;
-      hub -> ci -> aa -> gov -> ag -> sms_rdf;
+      hub -> ci;
       ci -> promote;
-      ci -> enhance -> src;
-      sms -> src;
-      gov -> src;
+      opcom -> promote;
+      opcom -> colab;
+      hub -> colab;
+   }
+
+The private colaboration is the same except instead of "public comain" the orchestration tools are private.
+
+This diagram shows the three, loosly coupled components:
+ * governance tools
+ * orchestration tools
+ * operations management database
+
+In the private colaboration case, you would self-host your own orchestration tools and configure your operations management database and governance tools to include the private orchestration integration endpoints.
+
+What it doesn't show is the integration layer between those tools. This is shown later.
+
+The other thing that the above diagram doesn't make clear is just how decentralised and scalable this is. A single public set of orchestration tools could support an arbitrarially large web of colaborating operators and safety teams. Each safety team and operator can link into multiple sets of orchestration tools (public and private). This is not because the world actually needs an enormously rich web of colaborations, it's a natural consequence of the decentralised, linked-up design.
+
+The next diagram ignores the operator domain, and expands on the public domain to include the open source dialog on tools. This is a significant safety strategy; place quality (through peer review and colaboration) above propietary interests.
+
+.. graphviz::
+
+   digraph d {
+      subgraph cluster_pub {
+         label="public domain";
+         promote [label="promote\nsafety\nculture" shape=ellipse];
+         colab [label="maintain\ncolaboration"];
+         orch [label="orchestration\ntools" shape=component];
+         colab -> orch;
+         promote -> orch;
+
+         foss [label="UAS Fun Police\nsource code repository" shape=component]
+         enhance [label="enhance\nsystems"];
+         enhance -> foss;
+      }
+      subgraph cluster_st {
+         label = "safety team domain";
+         hub [label="safety\nteam" shape=house];
+         ci [label="continuously\nimprove\nsafety" shape=ellipse];
+	 stt [label="governance\ntools" shape=component];
+	 hub -> ci -> stt;
+      }
+      ci -> enhance;
+      ci -> promote;
    }
 
 
-The horrendogram shows:
- * Operators use a management database, which has multiple interfaces.
- * Safety teams use safety governance tools
- * both these tools are free software, part of the UAS Fun Police suite
+The approach to integration is "control inverted". This means the components that have data and know how to use it (applications) provide interfaces, but they are purely servants; they provide services without consuming any, they wait pasively.
 
-It also shows that continuously improving safety breaks down into three kinds of activity:
- * enhancing the UAS Fun Police software
- * promoting safety culture
- * audit, analyse and monitor operations
+.. graphviz::
 
-Jargon alert: Those three things are the "use-case packages" that contain safety team's functional requirements.
+   digraph d {
+      label="integration architecture";
+      subgraph cluster_app {
+         label="data-source service";
+         app [shape=component]
+	 ui [label="user\ninterface"];
+	 api;
+	 rdf [label="read-only\nlinked-data\ninterface"];
+	 ui -> api -> app;
+	 rdf -> app;
+      }
+      subgraph cluster_app2 {
+         label="data-sink service";
+         app2 [shape=component label="app"];
+	 ui2 [label="user\ninterface"];
+	 api2 [label="api"];
+	 rdf2 [label="read-only\nlinked-data\ninterface"];
+	 ui2 -> api2 -> app2;
+	 rdf2 -> app2;
+      }
 
-The horrendogram also shows Operating a UAS/RPAS safely includes using a number of interfaces. Obviously there's more to it than that, but we will leave those details for later. What we can see here is that there are multiple interfaces:
- * admin UI: this is used for administration purposes. Someone is in full control of the UAS Fun Police instance that the operator uses. If they are self-hosting their own IT the administrator will be part of their team. If they are a tennant in shared infrastructure, the administrator may be servicing multiple operators.
- * web/tablet UI: this is the main user-interface that operators will see.
- * API: this is a machine-friendly equivalent to the web/tablet UI. It can be used by SMS-integrated tools.
+      subgraph cluster_agent {
+         label="integration agent";
+         ag [label="data\naggregator" shape=component];
+	 sparql [label="federated\ndata"];
+	 sparql -> ag;
+	 wrkr [label="worker" shape=component];
+	 wrkr -> sparql;
+      }
+      ag -> rdf;
+      wrkr -> api2;
 
-SMS-integrated tools reffers to the possability to avoid manual work (avoid using the web/tablet UI) by getting your computers to talk to each other. For example, there is no need to register flights manually if your ground control station does that for you.
+      orch [label="orchestration\ntools" shape=component];
+      rdf3 [label="read-only\nlinked-data\ninterface"];
+      ag -> rdf3 -> orch;
+   }
 
-The last part of the horrendogram shows the linked data infrastructure that the safety governance tools depend on. I'll describe that later. 
+The above diagram shows an integration agent (working on behalf of the data-sink service, that is receiving data through it's API). The integration agent uses it's data aggregator to pulls data from relevant data-source at once, as though they were a single federated source. The data aggregator knows which source-services are relevant becauseit asks the orchestration tool using it's linked-data interface.
+
+Both the governance tools and operations management tools would both have integration agents. Governance tools would use them in the most obvious way, to access information about operations from the various operators they service. Operations management tools would also have an integration agent to access information from safety management service providers, such as updates to rules etc.
+
