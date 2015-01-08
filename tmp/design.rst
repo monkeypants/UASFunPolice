@@ -1,30 +1,41 @@
 Design
 ======
 
+Two distinct roles are defined; UAS/RPAS operators and safety teams. While the same
+person may be involved in both activities, the system is structured in a way that
+keeps the roles/activities at arms length.
+
+The goal of operators is to operate safely. The goal of safety teams is to continuously improve the safety of operations. This includes promoting safety culture with the operators.
+
 .. graphviz::
 
    digraph d {
-      label="distrinuted, colaborative architecture";
-
-      node [shape=ellipse];
-      promote [label="promote\nsafety\nculture"];
-      enhance [label="continuously\nimprove\nsafety management"];
-      use [label="use\nUAS Fun Police\nsoftware"];
-
-      node [shape=rectangle];
-      opcom [label="operator\ncommunity"];
-      hub [label="safety\nteam"];
-      src [label="open\nsource\ncode"];
-
-      promote -> opcom;
-      promote -> hub;
-      enhance -> src;
-      enhance -> hub;
-      hub -> opcom;
-      hub -> use;
-      opcom -> use;
-      use -> src;
+      promote [label="promote\nsafety\nculture" shape=ellipse];
+      opcom [label="UAS/RPAS\noperator" shape=house];
+      operate [label="operate\nUAS/RPAS\nsafely"];
+      opcom -> operate;
+      hub [label="safety\nteam" shape=house];
+      ci [label="continuously\nimprove\nsafety" shape=ellipse];
+      hub -> ci;
+      ci -> promote;
+      opcom -> promote;
    }
+
+
+In adition to distinctly separating these roles, the design intent of the system is
+to support distrubuted safety colaboration. This means multiple safety teams and
+multiple operators, who free to be as independant or colaborative as they wish.
+
+ * They may run their own instances of the system, or co-tenant shared IT infrastructure.
+ * Operators control what data they share (if any) with the wider community, and what they share with their safety team(s).
+ * Safety teams can limit their view to the operators they service, or combine it with public data from the entire operator community.
+
+There is an absolute minimum of "centralised adminisration", it's limited to a simple
+interface where operators can register/publish the fact they exist and have chosen to make some data available.
+
+Operator teams and the safety teams are loosely coupled. Each operator can share their data with multiple safety teams (or none). Each safety team can audit, analyse and monitor multiple operators, or they can limit themselves to analysing the public information from the wider comunity.
+
+The next diagram is horendous, and could be replaced with an much simpler infographic at some stage.
 
 .. graphviz::
 
@@ -76,3 +87,25 @@ Design
       sms -> src;
       gov -> src;
    }
+
+
+The horrendogram shows:
+ * Operators use a management database, which has multiple interfaces.
+ * Safety teams use safety governance tools
+ * both these tools are free software, part of the UAS Fun Police suite
+
+It also shows that continuously improving safety breaks down into three kinds of activity:
+ * enhancing the UAS Fun Police software
+ * promoting safety culture
+ * audit, analyse and monitor operations
+
+Jargon alert: Those three things are the "use-case packages" that contain safety team's functional requirements.
+
+The horrendogram also shows Operating a UAS/RPAS safely includes using a number of interfaces. Obviously there's more to it than that, but we will leave those details for later. What we can see here is that there are multiple interfaces:
+ * admin UI: this is used for administration purposes. Someone is in full control of the UAS Fun Police instance that the operator uses. If they are self-hosting their own IT the administrator will be part of their team. If they are a tennant in shared infrastructure, the administrator may be servicing multiple operators.
+ * web/tablet UI: this is the main user-interface that operators will see.
+ * API: this is a machine-friendly equivalent to the web/tablet UI. It can be used by SMS-integrated tools.
+
+SMS-integrated tools reffers to the possability to avoid manual work (avoid using the web/tablet UI) by getting your computers to talk to each other. For example, there is no need to register flights manually if your ground control station does that for you.
+
+The last part of the horrendogram shows the linked data infrastructure that the safety governance tools depend on. I'll describe that later. 
