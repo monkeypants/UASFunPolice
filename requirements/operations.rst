@@ -7,6 +7,7 @@ Plan Activity
 
 All recorded activity occurs against some kind of plan. Some activities would be able to reuse generic plans. Other activities would need specific planning.
 
+
 Standard Operations
 ^^^^^^^^^^^^^^^^^^^
 
@@ -33,7 +34,17 @@ The scope of the risk assessment associated with activity planning is greater th
 Record Activity
 ---------------
 
-The simplest case must be very, very simple. For example, upload machine flight log files along with the absolute minimum of information. as much information as possible should be parsed from the logs automatically, minimising human intervention. This could probably be done via UI and/or API for truely hands-free operation.
+Activity is recorded in a number of contexts:
+ * workshop (construction/maintenance)
+ * flight planning
+ * packing and unpacking equipment from transport/storage
+ * pre-flight checking
+ * telemetry/telecommand/payload data
+ * post-flight checking
+ * communication logs
+ * incident/accident management
+
+Some activities must be very simple (low effort) to record. For example, upload telemetry/telecommand log files along with the absolute minimum of information. To the maximum extend possible, this sort of information management should be handled automatically.
 
 The complicated cases include all the incident, accident and hazard reporting features.
 
