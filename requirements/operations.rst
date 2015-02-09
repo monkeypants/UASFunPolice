@@ -117,7 +117,7 @@ Anonymously Report Concerns
 
 Anonymous reporting has a crucial role in aviation safety. The functional requirements are simple - anyone can report a hazard or incident (concern) anonymously, and these will be (at the very least) reviewed and considered by the safety management team.
 
-There are two things that make it slightly more complicated:
+This might be slightly more complicated than it seems at first:
 
  * If the incident involved loss of life or other very serious consequences, and the Australian Transport Safety Beuro (or equivalent authority in foreign jurisdictions) are required to investigate, then it is better if we are able to break anonaminity. If this subjective opinion withstands community debate, then something like a psudoanonymous remailer (type 0) is actually preferable to something with strong identity confidentiality.
  * It would be better if the safety team could engage in a dialog with the anonymous reporter (without breaking psudoanyminity), with follow up questions etc. This requirement rules out Mixmaster and Cypherpunk remailers (types I and II remailers).
