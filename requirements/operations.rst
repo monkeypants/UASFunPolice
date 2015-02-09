@@ -5,11 +5,22 @@ Operational Requirements
 Plan Activity
 -------------
 
-All recorded activity occurs agains some kind of plan.
+All recorded activity occurs against some kind of plan. Some activities would be able to reuse generic plans. Other activities would need specific planning.
+
+Standard Operations
+^^^^^^^^^^^^^^^^^^^
 
 There is probably a standard set of generic procedures, and activities that comply with those procedures might not require aditional planning. They are performed at the operators discression and the activity is recorded after the fact. Changes to these procedures would be subject to safety assessment.
 
-There are probably types of extraordinary activity that are not covered by the standard procedures. These require advanced planning, which is subject to safety assessment prior to activity occuring. New standard procedures are would be subject to equivalent process as extraordinary activities.
+For example, CanberraUAV flys multiple missions most weeks at the CMAC airfield. These usually involve flight testing incremental changes to software, airframes or avionics. These flights comply with the range safety plan of the CMAC site, and the Standard Operating Procedures of the Model Aircraft Association of Australia. They are usually observed by a gallery of experienced aeromodellers and always flown by a suitably qualified safety pilot.
+
+It would be difficult and disruptive to impose manditory planning steps to Standard Operations such as these.
+
+
+Extraordinary Operations
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Extraordinary activity is defined as anything outside the bounds of Standard Operations. These require advanced planning, which is subject to safety assessment prior to activity occuring. New standard operations are would be subject to equivalent process as extraordinary activities.
 
 The activity planning domain probably inclueds concepts like:
  * range safety plan
