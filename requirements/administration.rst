@@ -1,7 +1,7 @@
 Administration Requirements
 ===========================
 
-We assume there will be administrative tasks that supporting operations and management. We are not really sure what they are yet...
+We assume there will be administrative tasks that support operations and management. We are not really sure what they are yet...
 
 
 Manage System Configuration
@@ -27,5 +27,5 @@ The SMS is comprised of processes and systems to make the enterprise safer. Thos
 
 Manage people includes manage accounts / access control to the systems.
 
-If we end up designing a multi-tennanted solution, we may well need a concept of "groups" as in, each person may belong to zero or more groups, and people can create/goin/leave groups.
+If we end up designing a multi-tennanted solution, we may well need a concept of "groups" as in, each person may belong to zero or more groups, and people can create/join/leave groups.
 
