@@ -1,6 +1,8 @@
 Design Solution
 ===============
 
+This is also half-baked blather, requiring significant rework before it's usefull. Please focus on requirements for the timebeing.
+
 Minimum Viable Product
 ---------------------- 
 The minimum sufficient technichal solution that would allow the Safety Team to meet the current requirements model is:
