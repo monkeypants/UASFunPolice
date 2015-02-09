@@ -3,11 +3,12 @@ UASFunPolice Documentation
 ==========================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
+   :glob:
 
    introduction
    business_analysis
-   requirements
+   requirements/*
    design
 
 
