@@ -7,8 +7,8 @@ UASFunPolice Documentation
    :glob:
 
    introduction
+   requirements/* 
    business_analysis
-   requirements/*
    design
 
 
