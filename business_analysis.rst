@@ -1,6 +1,8 @@
 Domain Model
 ============
 
+This blather was typed as part of a late night sprint, and requires a lot of rework before it's usefull. Best to skip it and focus on the requirements sections for the timebeing.
+
 Vehicle Configuration
 ---------------------
 
