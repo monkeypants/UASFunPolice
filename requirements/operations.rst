@@ -1,4 +1,4 @@
-Operational Resuirements
+Operational Requirements
 ========================
 
 
