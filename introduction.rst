@@ -3,6 +3,8 @@ Introduction
 
 The purpose of this document is to improve safety of CanberraUAV.
 
+It is a living document, hosted at https://github.com/monkeypants/UASFunPolice/ . Pull requests are welcome, as are comments/issues/suggestions through the github ticket system. 
+
 .. things in our environment
    relationships between those things
    business entities; processes and services (that depend on the things)
