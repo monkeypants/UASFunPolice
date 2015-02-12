@@ -21,7 +21,7 @@ It would be difficult and disruptive to impose manditory planning steps to Stand
 Extraordinary Operations
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Extraordinary activity is defined as anything outside the bounds of Standard Operations. These require advanced planning, which is subject to safety assessment prior to activity occuring. New standard operations are would be subject to equivalent process as extraordinary activities.
+Extraordinary activity is defined as anything outside the bounds of Standard Operations. These require advanced planning, which is subject to safety assessment prior to activity occuring. New standard operations would be subject to equivalent process as extraordinary activities.
 
 The activity planning domain probably inclueds concepts like:
  * range safety plan
