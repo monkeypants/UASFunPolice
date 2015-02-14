@@ -4,16 +4,22 @@ Requirements
 ============
 
 
-{% for ucp in packages %}{% for uc in ucp.use_cases() %}
+{% for ucp in packages %}
+.. _{{ ucp }}:
+
+{{ ucp }}
+{{ '-' * ucp|length }}
+
+{{ ucp.description }}
+
+{% for uc in ucp.use_cases() %}
 
 .. _{{ uc }}:
 
-{{ ucp }} - {{ uc }}
-{{ '-' * ucp|length }}---{{ '-' * uc|length }}
+Use Case: {{ uc }}
+^^^^^^^^^^{{ '^' * uc|length }}
 
-Package: {{ ucp }}
-
-Use-case: {{ uc }}
+{{ uc.description }}
 
 {% if uc.features()|length > 0 %}
 
@@ -30,7 +36,7 @@ Use-case: {{ uc }}
       {% endfor %}
       // acted on
       {% for fspec in uc.feature_specifications() %}{% if fspec.obj != fspec.result %}
-        {{ fspec.action.code() }} -> {{ fspec.obj.code() }}'
+        {{ fspec.action.code() }} -> {{ fspec.obj.code() }};
         {{ fspec.action.code() }} -> {{ fspec.result.code() }};
       {% else %}
         {{ fspec.action.code() }} -> {{ fspec.obj.code() }};

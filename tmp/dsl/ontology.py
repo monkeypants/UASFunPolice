@@ -67,15 +67,16 @@ class Catalogue:
 ## requirements model
 class UCPCatalogue(Catalogue):
     _cat = []
-    def register(self, name, description):
+    def register(self, name, heading, description):
         for item in self._cat:
             if item.name == name:
                 if item.description == description:
-                    return item
-                else:
-                    msg = 'attempted redefinition of item %s (inconsistent descriptions)' % name
-                    raise Exception, msg
-        new = UseCasePackage(name, description)
+                    if item.heading == heading:
+                        return item
+                    else:
+                        msg = 'attempted redefinition of item %s (inconsistent descriptions)' % name
+                        raise Exception, msg
+        new = UseCasePackage(name, heading, description)
         self._cat.append(new)
         return new
 
@@ -88,12 +89,13 @@ class UCPCatalogue(Catalogue):
 
 class UseCasePackage:
     _cat = UCPCatalogue()
-    def __init__(self, name, description):
+    def __init__(self, name, heading, description=None):
         self.name = name
+        self.heading = heading
         self.description = description
  
     def __repr__(self):
-        return self.description
+        return self.heading
 
     def use_cases(self):
         """Return list of use-cases in this package"""
@@ -109,11 +111,11 @@ class UseCasePackage:
         return len(self.__repr__())
 
     @classmethod
-    def register(self, name, description):
-        return self._cat.register(name, description)
+    def register(self, name, heading, description):
+        return self._cat.register(name, heading, description)
 
-def ucp(name, description):
-    return  UseCasePackage.register(name, description)
+def ucp(name, heading, description=None):
+    return  UseCasePackage.register(name, heading, description)
 
 
 class UCCatalogue(Catalogue):
@@ -122,16 +124,17 @@ class UCCatalogue(Catalogue):
         #self._ucp_cat = ucp_cat
         pass
 
-    def register(self, ucp, name, description):
+    def register(self, ucp, name, heading, description):
         ucp_found = False
         for i in self._cat:
             if i.name == name and i.ucp == ucp:
-                if item.description == description:
-                    return item
-                else:
-                    msg = 'attempted redefinition of item %s (inconsistent descriptions)' % name
-                    raise Exception, msg
-        new = UseCase(ucp, name, description)
+                if i.heading == heading:
+                    if item.description == description:
+                        return item
+                    else:
+                        msg = 'attempted redefinition of item %s (inconsistent descriptions)' % name
+                        raise Exception, msg
+        new = UseCase(ucp, name, heading, description)
         self._cat.append(new)
         return new
 
@@ -144,13 +147,14 @@ class UCCatalogue(Catalogue):
 
 class UseCase:
     _cat = UCCatalogue()
-    def __init__(self, ucp, name, description):
+    def __init__(self, ucp, name, heading, description=None):
         self.package = ucp
         self.name = name
+        self.heading = heading
         self.description = description
  
     def __repr__(self):
-        return self.description
+        return self.heading
 
     def __len__(self):
         return len(self.__repr__())
@@ -213,11 +217,11 @@ class UseCase:
         return nouns
 
     @classmethod
-    def register(self, ucp, name, description):
-        return self._cat.register(ucp, name, description)
+    def register(self, ucp, name, heading, description):
+        return self._cat.register(ucp, name, heading, description)
 
-def use_case(ucp, name, description):
-    return  UseCase.register(ucp, name, description)
+def use_case(ucp, name, heading, description=None):
+    return  UseCase.register(ucp, name, heading, description)
 
 
 class ActorCatalogue(Catalogue):
