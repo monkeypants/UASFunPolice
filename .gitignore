@@ -60,5 +60,6 @@ docs/_build/
 # PyBuilder
 target/
 
-# Cruft
+# generates stuffs
 _generated/
+features/
