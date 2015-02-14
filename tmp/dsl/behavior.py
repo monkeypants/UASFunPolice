@@ -165,11 +165,6 @@ ucp_administer_system = ucp(
     'Administer System',
     '''We assume there will be administrative tasks that support operations and management. We are not really sure what they are yet...''')
 
-uc_register_new_org = use_case(
-    ucp_administer_system,
-    'register organisation',
-    'Register Organisation')
-
 uc_manage_system_configuration = use_case(
     ucp_administer_system,
     'manage system configuration',
@@ -226,7 +221,7 @@ hia_media = noun('HIA media', 'Media supporting an HIA report')
 hia_url = noun('HIA URL', 'URL supporting an HIA report')
 
 s = scenario(
-    uc_register_new_org,
+    uc_manage_people_and_groups,
     create, new_organisation, org_registration_page,
     "Register new organisation on the orginastion registration page",
     auth_user)
