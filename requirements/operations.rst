@@ -7,7 +7,7 @@ Plan Activity
 
 All recorded activity occurs against some kind of plan. Some activities would be able to reuse generic plans. Other activities would need specific planning.
 
-see www.ozrunways.com
+See www.ozrunways.com; preflight checking/planning for australian aviators. Check for NOTAMS, airspace, etc. Maybe even automated preflight checking?
 
 
 Standard Operations
