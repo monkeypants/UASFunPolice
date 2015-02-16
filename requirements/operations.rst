@@ -7,6 +7,8 @@ Plan Activity
 
 All recorded activity occurs against some kind of plan. Some activities would be able to reuse generic plans. Other activities would need specific planning.
 
+see www.ozrunways.com
+
 
 Standard Operations
 ^^^^^^^^^^^^^^^^^^^
