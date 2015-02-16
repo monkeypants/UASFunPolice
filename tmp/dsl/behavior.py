@@ -5,91 +5,21 @@ from ontology import *
 # Requirements model
 #
 
-# Management Requirements
+#TODO: load the *.ucp files
+'''
+for foo_bar in glob ./*.ucp:
+    var_name = "ucp_foo_bar"
+    obj_reference = "foo bar"
+    obj_heading = "Foo Bar"
+    obj_description = everything after the first blank line of `cat foo_bar.ucp`
 
-ucp_promote_safety = ucp(
-    'promote safety', # label used in prose
-    'Promote Safety', # label used in headings, followed by description
-    '''Management requirement:
- * Follow up on incidents, accidents and hazards by creating agenda items for group meetings (e.g. the Monday Mumble session).
- * Publish, distribute and promote relevant artefacts.
+    eval("""%s = ucp('''%s''', '''%s''', '''%s''')""" % (
+        var_name, obj_reference, obj_heading, obj_description))
+'''
 
-CanberraUAV is a self-organising, non-profit group "staffed" by volenteers that work on open source research and development projects. We are a registerd community organisation with a bank account and a comittee (etc), but we do not have a command structure or hirarchy like a conventional organisation.
-
-The cultural context of self-organised community groups is a significant factor in the way we can promote safety. There is very little scope for authoratitave mandates. The communication strategies most likely to succeed will involve the safety management system (and team) continuously demonstrating the merits of their activities.
-''')
-
-ucp_improve_safety = ucp(
-    'improve safety',
-    'Improve Safety',
-    '''Management requirement. This is where we figure out what needs to be done and do it. It's a continuous improvement, closed-loop feedback process.
-
-It probably involves improving policies and procedures, initiating cultural change as well as other safety-improving actions.
-
-One idea is to utilise a ticketing system (such as GitLab) for safety issues, which are referenced (or even closed) by changes to policy and procedure documentation in a version control system (such as git).''')
-
-ucp_asses_safety = ucp(
-    'assess safety',
-    'Assess Safety',
-    '''Management requirement. Opreational data (including planned activity) is systematically reviewed, evaluated, discussed and analysed in a timely fashion. The results of this work is fed into safety improving and promoting activities.''')
-
-# OK, I'm really sick of typing the same thing three times in a row.
-# I should type it once in a yaml file or something, then use code to type it thrice
-# or even, one file extension class (e.g. foo.use_case_package),
-# where the foo is the thrice-typed bit
-# and the lines before the first blank line are the positional parameters.
-# (or maybe with "paramname: paramvalue" for easier reading) 
-
-# Operational requirements
-ucp_plan_standard_operations = ucp(
-    'plan standard operations',
-    'Plan Standard Operations',
-    '''There is probably a standard set of generic procedures, and activities that comply with those procedures might not require aditional planning. They are performed at the operators discression and the activity is recorded after the fact. Changes to these procedures would be subject to safety assessment.
-
-For example, CanberraUAV flys multiple missions most weeks at the CMAC airfield. These usually involve flight testing incremental changes to software, airframes or avionics. These flights comply with the range safety plan of the CMAC site, and the Standard Operating Procedures of the Model Aircraft Association of Australia. They are usually observed by a gallery of experienced aeromodellers and always flown by a suitably qualified safety pilot.
-
-It would be difficult and disruptive to impose manditory planning steps to Standard Operations such as these.
-''')
-
-ucp_plan_extraordinary_operations = ucp(
-    'plan extraordinary operations',
-    'Plan Exteraordinary Operations',
-    '''Extraordinary activity is defined as anything outside the bounds of Standard Operations. These require advanced planning, which is subject to safety assessment prior to activity occuring. New standard operations would be subject to equivalent process as extraordinary activities.
-
-The activity planning domain probably inclueds concepts like:
-
- * range safety plan
- * class of airspace
- * class of activity
-
-The scope of the risk assessment associated with activity planning is greater than safety; it also includes risks related to regulatory compliance, financial, reputation and others. We probably need to link up to a "risk management plan" framework of which safety management is a subset.''')
-
-ucp_record_activity = ucp(
-    'record activity',
-    'Record Activity',
-    '''Activity is recorded in a number of contexts:
-
- * workshop (construction/maintenance)
- * flight planning
- * packing and unpacking equipment from transport/storage
- * pre-flight checking
- * telemetry/telecommand/payload data
- * post-flight checking
- * communication logs
- * incident/accident management
-
-Some activities must be very simple (low effort) to record. For example, upload telemetry/telecommand log files along with the absolute minimum of information. To the maximum extend possible, this sort of information management should be handled automatically.
-
-The complicated cases include all the incident, accident and hazard reporting features.
-
-This will not be limited to flight operation activities. Inspection and maintenance of equipment. Maybe even our meeting minutes belong here. Much to elaborate on...''')
-
-ucp_submit_report_to_safety_team = ucp(
-    'submit a report to the safety team',
-    'Submit a Report ro the Safety Team',
-    '''Typically this would be done by a UAS operator, but the safety team would accept reports from anyone.
-
-A report might be submitted automatically as part of a flight log post-processing activity, or it might be submitted manually on other channels.''')
+import glob
+for fname in glob.glob('*.ucp'):
+    print fname
 
 uc_submit_hazard_report = use_case(
     ucp_submit_report_to_safety_team,
@@ -121,11 +51,6 @@ Submitters may request that an incident report is kept confidential. In this cas
 
 If a submitter nominates that they do not wish for the incident report to be kept private, the safety team may release it into the public domain at their discression.''')
 
-ucp_suppliment_hia_report = ucp(
-    'suppliment HIA report with additional data',
-    'Suppliment HIA Report with Additional Data',
-    '''Hazards, Incidents and Accidents are reported using a standard form, becuase it prompts the submitter to provide certain details that are considered useful a-priori. Where available, it may be beneficial to include additional data to augment the information in the standard form. For example telemetry logs, video and still images, audio, diagrams, journalism references, additional witness statements, etc. Unlike the fields of the standard form, these are essentially unstructured data.''')
-
 uc_directly_attach_media_to_an_hia_report = use_case(
     ucp_suppliment_hia_report,
     'directly attach media files to an HIA report',
@@ -145,25 +70,6 @@ uc_provide_supplimentary_data_after_hia_report_submission = use_case(
     'provide supplimentary data after HIA report submission',
     'Provide Supplimentary Data after HIA Report Submission',
     '''Either at the request of the safety team or unprompted, a HIA report submitter may chose to augment a HIA report with supplimentary data after the report has been submitted. This may be linked media or directly attached files.''')
-
-ucp_anonymously_report_concerns = ucp(
-    'anonymously report concerns',
-    'Anonymously Report Concerns',
-    '''Anonymous reporting has a crucial role in aviation safety. The functional requirements are simple - anyone can report a hazard or incident (concern) anonymously, and these will be (at the very least) reviewed and considered by the safety management team.
-
-This might be slightly more complicated than it seems at first:
-
- * If the incident involved loss of life or other very serious consequences, and the Australian Transport Safety Beuro (or equivalent authority in foreign jurisdictions) are required to investigate, then it is better if we are able to break anonaminity. If this subjective opinion withstands community debate, then something like a psudoanonymous remailer (type 0) is actually preferable to something with strong identity confidentiality.
- * It would be better if the safety team could engage in a dialog with the anonymous reporter (without breaking psudoanyminity), with follow up questions etc. This requirement rules out Mixmaster and Cypherpunk remailers (types I and II remailers).
- * The process of submitting an anonymous report should be trivially simple. For example "send a message to the safety team anonymous reporting email address". This rules out a Mixminion remailers, unless some intermediate (trusted) component recieved the email from conventional email relays, then did the mixing/SURB stuff on the reporter's behalf. That kind of defeats the point, but if it could be trusted then it woud potentially meet all requirements.
-
-''')
-
-
-ucp_administer_system = ucp(
-    'administer system',
-    'Administer System',
-    '''We assume there will be administrative tasks that support operations and management. We are not really sure what they are yet...''')
 
 uc_manage_system_configuration = use_case(
     ucp_administer_system,

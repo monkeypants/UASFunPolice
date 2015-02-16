@@ -1,0 +1,6 @@
+
+Management requirement. This is where we figure out what needs to be done and do it. It is a continuous improvement, closed-loop feedback process.
+
+It probably involves improving policies and procedures, initiating cultural change as well as other safety-improving actions.
+
+One idea is to utilise a ticketing system (such as GitLab) for safety issues, which are referenced (or even closed) by changes to policy and procedure documentation in a version control system (such as git).

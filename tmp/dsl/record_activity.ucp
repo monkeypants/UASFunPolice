@@ -1,0 +1,17 @@
+
+Activity is recorded in a number of contexts:
+
+ * workshop (construction/maintenance)
+ * flight planning
+ * packing and unpacking equipment from transport/storage
+ * pre-flight checking
+ * telemetry/telecommand/payload data
+ * post-flight checking
+ * communication logs
+ * incident/accident management
+
+Some activities must be very simple (low effort) to record. For example, upload telemetry/telecommand log files along with the absolute minimum of information. To the maximum extend possible, this sort of information management should be handled automatically.
+
+The complicated cases include all the incident, accident and hazard reporting features.
+
+This will not be limited to flight operation activities. Inspection and maintenance of equipment. Maybe even our meeting minutes belong here. Much to elaborate on...
